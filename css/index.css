@@ -40,14 +40,14 @@
     top: 50%;
     margin-top: -15px;
     font-size: 30px; }
-  .header .fa-bars, .header .fa-times {
+  .header .icon-left {
     left: 10px; }
-  .header .fa-pencil {
+  .header .icon-right {
     right: 10px; }
 
 .menu {
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: 0;
   line-height: 50px;
@@ -66,7 +66,7 @@
     margin-left: 10px;
     color: rgba(255, 255, 255, 0.6); }
 
-.icon, .bill li i {
+.icon, .bill li i, .row li i {
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -105,5 +105,33 @@
       color: #aaa; }
     .bill li:nth-child(odd) {
       background-color: #fbfbfb; }
+
+.wrapper {
+  width: 100%;
+  height: auto;
+  padding-top: 50px; }
+
+.icon, .bill li i, .row li i {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  color: #fff; }
+
+.row {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  border-bottom: 1px solid #ddd; }
+  .row li {
+    width: 40px;
+    height: auto;
+    float: left;
+    margin-right: 20px;
+    text-align: center; }
+    .row li span {
+      font-size: 14px;
+      color: #999; }
 
 /*# sourceMappingURL=index.css.map */

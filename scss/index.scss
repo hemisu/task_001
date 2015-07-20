@@ -1,3 +1,4 @@
+﻿@charset "utf-8";
 //设置元素宽高
 @mixin size($width:100%,$height:auto){
     width: $width;
@@ -10,6 +11,8 @@
     margin-top: -$height/2;
 }
 $bg-color: #8ED498;
+$font-color: #999;
+$border-color:#ddd;
 .fa-usd{
     background-color: #93dcb8;
 }
@@ -51,16 +54,16 @@ $bg-color: #8ED498;
 		@include v-middle(30px);
 		font-size: 30px;
 	}
-	.fa-bars,.fa-times{
+	.icon-left{
 		left: 10px;
 	}
-	.fa-pencil{
+	.icon-right{
 		right: 10px;
 	}
 }
 .menu{
     width: 100%;
-	position: absolute;
+	position: fixed;
 	top: 50px;
 	left: 0;
 	line-height: 50px;
@@ -130,4 +133,34 @@ $bg-color: #8ED498;
 			background-color: #fbfbfb;
 		}
 	}	
+}
+//编辑页面样式
+.wrapper{
+    @include size();
+    padding-top: 50px;
+}
+.icon{
+    @include size(40px,40px);
+    line-height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #fff; 
+}
+.row{
+    @include size();
+    padding: 10px;
+    border-bottom: 1px solid $border-color;    
+    li{
+        @include size(40px);
+        float: left;
+        margin-right: 20px;
+        text-align: center;
+        i{
+            @extend .icon; 
+        }
+        span{
+            font-size: 14px;
+            color: $font-color;
+        }    
+    }
 }
