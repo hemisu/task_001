@@ -1,0 +1,133 @@
+//设置元素宽高
+@mixin size($width:100%,$height:auto){
+    width: $width;
+    height: $height;
+}
+//使用绝对定位实现垂直居中
+@mixin v-middle($height){
+    position: absolute;
+    top: 50%;
+    margin-top: -$height/2;
+}
+$bg-color: #8ED498;
+.fa-usd{
+    background-color: #93dcb8;
+}
+.fa-female{
+    background-color: #f39f61;
+}
+.fa-coffee{
+    background-color: #fe8988;
+}
+.fa-home{
+    background-color: #c5b298;
+}
+.fa-plane{
+   background-color: #6fb2de;
+}
+.fa-shopping-cart{
+   background-color: #d9584b;   
+}
+.fa-heart{
+    background-color: #fdc403;
+}
+.clearfix:after{
+	content: "";
+	display: table;
+	clear: both;
+}
+.header{
+	@include size(100%,50px);
+	position: fixed;
+	line-height: 50px;
+	text-align: center;
+	background-color: $bg-color;
+	color: #fff;
+	z-index: 999;
+	span{
+		font-size: 18px;
+	}
+	.fa{
+		@include v-middle(30px);
+		font-size: 30px;
+	}
+	.fa-bars,.fa-times{
+		left: 10px;
+	}
+	.fa-pencil{
+		right: 10px;
+	}
+}
+.menu{
+    width: 100%;
+	position: absolute;
+	top: 50px;
+	left: 0;
+	line-height: 50px;
+	font-size: 16px;
+	color: #fff;
+	background-color: rgba(142,212,152,.8);
+	border-top: 1px solid #afe0b6;
+	overflow: hidden;
+	z-index: 999;
+	transition: height 0.3s;
+	.on{
+	    color: #fff;
+	    font-weight: 700;
+	}
+	li{
+		float: left;
+		margin-left: 10px;
+		//color: #cfebd3;
+		color: rgba(255,255,255,.6);
+	}
+}
+.icon{
+    @include size(40px,40px);
+    line-height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    text-align: center;
+    color: #fff; 
+}
+//收支状况
+.situation{
+	margin-left: 20px;
+	font-size: 18px;
+	font-weight: 700;
+}
+.bill{
+	@include size();
+	padding: 50px 10px 0 10px;
+	li{
+		@include size(100%,80px);
+		position: relative;
+		line-height: 80px;
+		border-bottom: 1px dashed #a6baa9;
+		i{
+			@extend .icon;
+		}
+		.cate{
+			margin-left: 20px;
+			font-size: 18px;
+		}
+		.income{
+			@extend .situation;
+			color: #7fd2a9;
+		}
+		.payment{
+			@extend .situation;
+			color: #db6c63;
+		}
+		.date{
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			line-height: normal;
+			color: #aaa;
+		}
+		&:nth-child(odd){
+			background-color: #fbfbfb;
+		}
+	}	
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<title>个人记账本</title>
+	</head>
+
+	<body>
+		<!--
+        	作者：Frank
+        	时间：2015-07-20
+        	描述：头部区域
+        -->
+		<div class="header">
+			<i class="fa fa-bars" id="menu-toggle"></i>
+			<span>记账本</span>
+			<i class="fa fa-pencil"></i>
+		</div>
+		<ul class="menu" style="display: none;height: 0;">
+			<li class="on">账目列表</li>
+			<li>账目统计</li>
+			<li>账目图表</li>
+		</ul>
+		<!--
+        	作者：Frank
+        	时间：2015-07-20
+        	描述：主要内容区域
+        -->
+        <div class="main">
+		<ul class="bill">
+			<li>
+				<i class="fa fa-usd"></i>
+				<span class="cate">收入</span>
+				<span class="income">+776</span>
+				<span class="date">15/7/21</span>
+			</li>
+			<li>
+				<i class="fa fa-female"></i>
+				<span class="cate">衣服</span>
+				<span class="payment">-776</span>
+				<span class="date">15/7/21</span>
+			</li>
+			<li>
+				<i class="fa fa-coffee"></i>
+				<span class="cate">饮食</span>
+				<span class="payment">-776</span>
+				<span class="date">15/7/21</span>
+			</li>
+			<li>
+				<i class="fa fa-usd"></i>
+				<span class="cate">收入</span>
+				<span class="income">+776</span>
+				<span class="date">15/7/21</span>
+			</li>
+			<li>
+				<i class="fa fa-shopping-cart"></i>
+				<span class="cate">购物</span>
+				<span class="payment">-776</span>
+				<span class="date">15/7/21</span>
+			</li>
+		</ul>
+		</div>
+		<script src="js/zepto.js"></script>
+		<script src="js/script.js"></script>
+	</body>
+
+</html>
