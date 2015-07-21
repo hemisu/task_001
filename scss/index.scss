@@ -203,3 +203,30 @@ $li-height:80px;
         }    
     }
 }
+.input-area{
+    @include size();
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 20px 10px;
+    background-color: #eee;
+    border: none;
+    i{
+        @extend .icon;
+        margin-right: 10px;
+    }
+    span{
+        font-size: 18px;
+    }
+    .txt-amount{
+        @include size(50%,100%);
+        @include v-middle(80px);
+        right: 10px;
+        font-size: 18px;
+        text-align: right;
+        background-color:inherit;
+        color: #888;
+        border: none;
+    
+    }
+}

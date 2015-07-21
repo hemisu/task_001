@@ -8,6 +8,7 @@ Zepto(function($) {
 		var $wrapper=$("#edit-wrapper");
 		if($wrapper.css("display")==="none"&&$(this).hasClass("fa-pencil")){
 			$("#bill-wrapper").hide();
+			$(".menu").hide();
 			$wrapper.slideDown(time);
 			$(".header").css({
 				"background-color":"#eee",
@@ -32,7 +33,7 @@ Zepto(function($) {
 		$(".header .btn-publish").toggle();
 	}
 	//展开菜单
-	$("#menu-toggle").on("tap click", function() {
+	$("#menu-toggle").on("tap", function() {
 		var $menu = $(".menu");
 		if ($("#bill-wrapper").css("display")!=="none") {
 			$menu.slideToggle(300);
@@ -45,7 +46,7 @@ Zepto(function($) {
 		$(this).toggleClass("fa-times");
 	});
 	//显示编辑页面
-	$(".fa-pencil").on("tap click",wrapperToggle);
+	$(".fa-pencil").on("tap",wrapperToggle);
 
     function getEditPanelWidth(el) {
         var income, payment;

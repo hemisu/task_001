@@ -77,7 +77,7 @@
     margin-left: 10px;
     color: rgba(255, 255, 255, 0.6); }
 
-.icon, .bill li i, .row li i {
+.icon, .bill li i, .row li i, .input-area i {
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -139,7 +139,7 @@
   height: auto;
   padding-top: 50px; }
 
-.icon, .bill li i, .row li i {
+.icon, .bill li i, .row li i, .input-area i {
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -161,5 +161,31 @@
     .row li span {
       font-size: 14px;
       color: #999; }
+
+.input-area {
+  width: 100%;
+  height: auto;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 20px 10px;
+  background-color: #eee;
+  border: none; }
+  .input-area i {
+    margin-right: 10px; }
+  .input-area span {
+    font-size: 18px; }
+  .input-area .txt-amount {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    margin-top: -40px;
+    right: 10px;
+    font-size: 18px;
+    text-align: right;
+    background-color: inherit;
+    color: #888;
+    border: none; }
 
 /*# sourceMappingURL=index.css.map */
