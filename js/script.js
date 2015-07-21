@@ -85,4 +85,19 @@ Zepto(function($) {
         e.preventDefault();
         startX = e.changedTouches[0].pageX;
     });
+    //显示项目金额输入区域
+    $(".row").on("tap",function(e){
+    	var parent=$(e.target).parent();
+    	if(parent[0].tagName.toLowerCase()==="li"){
+    		var $input=$(".input-area");
+    		$input.children("i")[0].className=parent.children("i")[0].className;
+    		$input.children("span").text(parent.children("span").text());
+    		$input.show();
+    		$(".txt-amount").focus();
+    	}
+    });
+    //隐藏项目金额输入区域
+    $(".txt-amount").blur(function(){
+    	$(".input-area").hide();
+    });
 })
