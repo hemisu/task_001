@@ -46,4 +46,38 @@ Zepto(function($) {
 	});
 	//显示编辑页面
 	$(".fa-pencil").on("tap click",wrapperToggle);
+
+    function getEditPanelWidth(el) {
+        var income, payment;
+
+        income = $(el).find(".income");
+        if (income.length === 0) {
+            payment = $(el).find(".payment");
+        }
+
+        return (payment || income).position().left;
+    };
+
+    var editPanelHtml = "<i class=\"fa fa-pencil\"></i><i class=\"fa fa-trash-o\"></i>";
+    $(".bill .edit").each(function() {
+        $(this).html(editPanelHtml);
+    });
+
+    //滑动
+    $(".bill .item").on("touchmove", function() {
+        if ($(this).hasClass("displayEdit")) {
+            // towards left
+            $(this).animate({"margin-left": -getEditPanelWidth(this)}, "slow");
+        }
+        else {
+            //towards right
+            $(this).animate({"margin-left": 0}, "slow");
+        }
+    });
+    $(".bill .item").on("touchstart", function() {
+        $(this).toggleClass("displayEdit");
+        if ($(this).hasClass("displayEdit")) {
+            $(this).next().css("width", getEditPanelWidth(this));
+        }
+    });
 })

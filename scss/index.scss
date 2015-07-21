@@ -122,7 +122,6 @@ $li-height:80px;
 		@include size(100%,80px);
 		position: relative;
 		line-height: 80px;
-		padding: 0 10px;
 		border-bottom: 1px dashed #a6baa9;
 		i{
 			@extend .icon;
@@ -148,6 +147,29 @@ $li-height:80px;
 		}
 		&:nth-child(odd){
 			background-color: #fbfbfb;
+		}
+
+		.item{
+			position: absolute; 
+			z-index: 200; 
+			display: inline; 
+			width: 100%; 
+			height: 100%;
+			background-color: white; 
+			padding-left: 10px;
+		}
+
+		.edit{
+			position: absolute;
+			display:inline;
+			background-color: #db6c63;
+			height: 100%;
+			right: 0px;
+			z-index: 0;
+
+			i{
+				width: 50%;
+			}
 		}
 	}	
 }
