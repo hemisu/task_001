@@ -10,9 +10,16 @@
     top: 50%;
     margin-top: -$height/2;
 }
+//头部背景颜色
 $bg-color: #8ED498;
+//头部字体颜色
 $font-color: #999;
+//边框颜色
 $border-color:#ddd;
+//头部高度
+$hd-height:50px;
+//账单中项目高度
+$li-height:80px;
 .fa-usd{
     background-color: #93dcb8;
 }
@@ -54,12 +61,22 @@ $border-color:#ddd;
 		@include v-middle(30px);
 		font-size: 30px;
 	}
-	.icon-left{
+	.header-left{
 		left: 10px;
 	}
-	.icon-right{
+	.header-right{
 		right: 10px;
 	}
+	.btn-publish{
+        @include size(50px,30px);
+        @include v-middle(30px);    
+        line-height: 30px;;
+        font-size: 14px;
+        border: none;
+        border-radius: 5px;
+        background-color: #8ed498;
+        color: #fff;
+    }
 }
 .menu{
     width: 100%;
@@ -73,7 +90,6 @@ $border-color:#ddd;
 	border-top: 1px solid #afe0b6;
 	overflow: hidden;
 	z-index: 999;
-	transition: height 0.3s;
 	.on{
 	    color: #fff;
 	    font-weight: 700;
@@ -101,11 +117,12 @@ $border-color:#ddd;
 }
 .bill{
 	@include size();
-	padding: 50px 10px 0 10px;
+	padding-top: 50px;
 	li{
 		@include size(100%,80px);
 		position: relative;
 		line-height: 80px;
+		padding: 0 10px;
 		border-bottom: 1px dashed #a6baa9;
 		i{
 			@extend .icon;
@@ -135,7 +152,7 @@ $border-color:#ddd;
 	}	
 }
 //编辑页面样式
-.wrapper{
+#edit-wrapper{
     @include size();
     padding-top: 50px;
 }

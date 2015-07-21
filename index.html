@@ -18,11 +18,12 @@
         	描述：头部区域
         -->
 		<div class="header">
-			<i id="menu-toggle" class="fa fa-bars icon-left"></i>
+			<i id="menu-toggle" class="fa fa-bars header-left"></i>
 			<span>记账本</span>
-			<i class="fa fa-pencil icon-right"></i>
+			<i class="fa fa-pencil header-right"></i>
+			<button type="button" class="btn-publish header-right" style="display: none;">发布</button>
 		</div>
-		<ul class="menu" style="display: none;height: 0;">
+		<ul class="menu" style="display: none;">
 			<li class="on">账目列表</li>
 			<li>账目统计</li>
 			<li>账目图表</li>
@@ -30,9 +31,9 @@
 		<!--
         	作者：Frank
         	时间：2015-07-20
-        	描述：主要内容区域
+        	描述：账单列表区域
         -->
-		<div class="main">
+		<div id="bill-wrapper">
 			<ul class="bill">
 				<li>
 					<i class="fa fa-usd"></i>
@@ -66,7 +67,12 @@
 				</li>
 			</ul>
 		</div>
-		<div class="wrapper" style="display: none;">
+		<!--
+        	作者：Frank
+        	时间：2015-07-21
+        	描述：内容编辑区域
+        -->
+		<div id="edit-wrapper" style="display: none;">
 			<ul class="row clearfix">
 				<li>
 					<i class="fa fa-usd"></i>
@@ -101,6 +107,7 @@
 					<span>其它</span>
 				</li>
 			</ul>
+			<input type="text"  />
 		</div>
 		<script src="js/zepto.js"></script>
 		<script src="js/script.js"></script>
