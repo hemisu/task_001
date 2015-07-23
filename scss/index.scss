@@ -133,10 +133,16 @@ $li-height:80px;
 		.income{
 			@extend .situation;
 			color: #7fd2a9;
+			&:before{
+			    content: "+";
+			}
 		}
 		.payment{
 			@extend .situation;
 			color: #db6c63;
+			&:before{
+			    content: "-";
+			}
 		}
 		.date{
 			position: absolute;
@@ -190,7 +196,7 @@ $li-height:80px;
     padding: 10px;
     border-bottom: 1px solid $border-color;    
     li{
-        @include size(40px);
+        @include size(45px);
         float: left;
         margin-right: 20px;
         text-align: center;

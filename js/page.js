@@ -1,3 +1,7 @@
+/**
+ * FileName:page.js
+ * Description:页面之间的切换动画以及元素的展示和隐藏。
+ */
 Zepto(function($) {
 	/**
 	 * 显示或隐藏编辑页面方法
@@ -92,12 +96,13 @@ Zepto(function($) {
     		var $input=$(".input-area");
     		$input.children("i")[0].className=parent.children("i")[0].className;
     		$input.children("span").text(parent.children("span").text());
+    		$(".txt-amount").val('');
     		$input.show();
-    		$(".txt-amount").focus();
+    		$(".txt-amount").trigger("focus");
     	}
     });
     //隐藏项目金额输入区域
-    $(".txt-amount").blur(function(){
+    $(".txt-amount").on("blur",function(){
     	$(".input-area").hide();
     });
 })
