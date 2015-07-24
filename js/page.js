@@ -111,7 +111,7 @@ Zepto(function($) {
    		if(e.target.tagName.toLowerCase()==="td"){
    			var $target=$(e.target);
    			var $amount=$(".txt-amount");
-   			var $toggle=$("#toggle-save").text("=");
+   			var $toggle=$("#toggle-save");
    			if(RegExp("[0-9]").test($target.text())){
    				if($target.text()==="0"&&$amount.val().length<1){
    					return;
@@ -121,13 +121,13 @@ Zepto(function($) {
    			else if($target.text().toLowerCase()==="c"){
    				$amount.val("");
    			}
-   			else if($target.text()==="+"){
+   			else if($target.text()==="+"&&$amount.val().length>0){
    				result+=$amount.val();
    				result+="+";
    				$toggle.text("=");
    				$amount.val("");
    			}
-   			else if($target.text()==="-"){
+   			else if($target.text()==="-"&&$amount.val().length>0){
    				result+=$amount.val();
    				result+="-";
    				$toggle.text("=");
@@ -142,7 +142,7 @@ Zepto(function($) {
    			else if($target.text()==="."&&$amount.val().indexOf(".")<0){
    				$amount.val($amount.val()+$target.text());
    			}
-   			else if($target.children("i").attr("class").indexOf("left")>=0){
+   			else if($target.children("i").length>0&&$target.children("i").attr("class").indexOf("left")>=0){
    				$amount.val($amount.val().substr(0,$amount.val().length-1));
    			}
    		}
