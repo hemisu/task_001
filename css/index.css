@@ -77,7 +77,7 @@
     margin-left: 10px;
     color: rgba(255, 255, 255, 0.6); }
 
-.icon, .bill li i, .row li i, .input-area i {
+.icon, .bill li i, #edit-wrapper .row li i, .input-area i {
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -142,39 +142,43 @@
   width: 100%;
   height: auto;
   padding-top: 50px; }
-
-.icon, .bill li i, .row li i, .input-area i {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 50%;
-  font-size: 20px;
-  color: #fff; }
-
-.row {
-  width: 100%;
-  height: auto;
-  padding: 10px;
-  border-bottom: 1px solid #ddd; }
-  .row li {
-    width: 45px;
+  #edit-wrapper .icon, #edit-wrapper .bill li i, .bill li #edit-wrapper i, #edit-wrapper .row li i, #edit-wrapper .input-area i, .input-area #edit-wrapper i {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #fff; }
+  #edit-wrapper .row {
+    width: 100%;
     height: auto;
-    float: left;
-    margin-right: 20px;
-    text-align: center; }
-    .row li span {
-      font-size: 14px;
-      color: #999; }
+    padding: 10px;
+    border-bottom: 1px solid #ddd; }
+    #edit-wrapper .row li {
+      width: 45px;
+      height: auto;
+      float: left;
+      margin-right: 20px;
+      text-align: center; }
+      #edit-wrapper .row li span {
+        font-size: 14px;
+        color: #999; }
 
-.input-area {
+.calc {
   width: 100%;
   height: auto;
   position: fixed;
   left: 0;
   bottom: 0;
+  z-index: 9999; }
+
+.input-area {
+  width: 100%;
+  height: auto;
+  position: relative;
   padding: 20px 10px;
   background-color: #eee;
-  border: none; }
+  border-top: 1px solid #ddd; }
   .input-area i {
     margin-right: 10px; }
   .input-area span {
@@ -191,5 +195,16 @@
     background-color: inherit;
     color: #888;
     border: none; }
+
+.keyboard {
+  width: 100%;
+  height: auto;
+  background-color: #eee; }
+  .keyboard td {
+    width: 25%;
+    height: 60px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #ddd; }
 
 /*# sourceMappingURL=index.css.map */

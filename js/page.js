@@ -90,19 +90,61 @@ Zepto(function($) {
         startX = e.changedTouches[0].pageX;
     });
     //显示项目金额输入区域
-    $(".row").on("tap",function(e){
+    $("#edit-wrapper .row").on("tap",function(e){
     	var parent=$(e.target).parent();
     	if(parent[0].tagName.toLowerCase()==="li"){
     		var $input=$(".input-area");
-    		$input.children("i")[0].className=parent.children("i")[0].className;
+    		$input.children("i").attr("class",parent.children("i").attr("class"));
     		$input.children("span").text(parent.children("span").text());
     		$(".txt-amount").val('');
-    		$input.show();
-    		$(".txt-amount").trigger("focus");
+    		$(".calc").show();
+    		$(".txt-amount").triggerHandler("focus");
     	}
     });
-    //隐藏项目金额输入区域
-    $(".txt-amount").on("blur",function(){
-    	$(".input-area").hide();
-    });
+    /**
+     * 计算器键盘点击事件处理
+     * 
+     * PS:可能有未知的坑
+     */
+   var result="";
+   $(".keyboard").on("tap",function(e){
+   		if(e.target.tagName.toLowerCase()==="td"){
+   			var $target=$(e.target);
+   			var $amount=$(".txt-amount");
+   			var $toggle=$("#toggle-save").text("=");
+   			if(RegExp("[0-9]").test($target.text())){
+   				if($target.text()==="0"&&$amount.val().length<1){
+   					return;
+   				}
+   				$amount.val($amount.val()+$target.text());
+   			}
+   			else if($target.text().toLowerCase()==="c"){
+   				$amount.val("");
+   			}
+   			else if($target.text()==="+"){
+   				result+=$amount.val();
+   				result+="+";
+   				$toggle.text("=");
+   				$amount.val("");
+   			}
+   			else if($target.text()==="-"){
+   				result+=$amount.val();
+   				result+="-";
+   				$toggle.text("=");
+   				$amount.val("");
+   			}
+   			else if($target.text()==="="){
+   				result+=$amount.val();
+   				$amount.val(eval(result));
+   				$toggle.text("OK");
+   				result="";
+   			}
+   			else if($target.text()==="."&&$amount.val().indexOf(".")<0){
+   				$amount.val($amount.val()+$target.text());
+   			}
+   			else if($target.children("i").attr("class").indexOf("left")>=0){
+   				$amount.val($amount.val().substr(0,$amount.val().length-1));
+   			}
+   		}
+   })
 })

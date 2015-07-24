@@ -1,4 +1,4 @@
-/**
+/*
  * FileName:data.js
  * Description:处理数据的增删该查
  */

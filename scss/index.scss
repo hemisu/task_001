@@ -183,40 +183,46 @@ $li-height:80px;
 #edit-wrapper{
     @include size();
     padding-top: 50px;
-}
-.icon{
-    @include size(40px,40px);
-    line-height: 40px;
-    border-radius: 50%;
-    font-size: 20px;
-    color: #fff; 
-}
-.row{
-    @include size();
-    padding: 10px;
-    border-bottom: 1px solid $border-color;    
-    li{
-        @include size(45px);
-        float: left;
-        margin-right: 20px;
-        text-align: center;
-        i{
-            @extend .icon; 
+    .icon{
+        @include size(40px,40px);
+        line-height: 40px;
+        border-radius: 50%;
+        font-size: 20px;
+        color: #fff; 
+    }
+    .row{
+        @include size();
+        padding: 10px;
+        border-bottom: 1px solid $border-color;    
+        li{
+            @include size(45px);
+            float: left;
+            margin-right: 20px;
+            text-align: center;
+            i{
+                @extend .icon; 
+            }
+            span{
+                font-size: 14px;
+                color: $font-color;
+            }    
         }
-        span{
-            font-size: 14px;
-            color: $font-color;
-        }    
     }
 }
-.input-area{
+
+.calc{
     @include size();
     position: fixed;
     left: 0;
     bottom: 0;
+    z-index: 9999;
+}
+.input-area{
+    @include size();
+    position: relative;
     padding: 20px 10px;
     background-color: #eee;
-    border: none;
+    border-top: 1px solid $border-color;
     i{
         @extend .icon;
         margin-right: 10px;
@@ -233,6 +239,15 @@ $li-height:80px;
         background-color:inherit;
         color: #888;
         border: none;
-    
+    }
+}
+.keyboard{
+    @include size();
+    background-color: #eee;
+    td{
+        @include size(25%,60px);
+        text-align: center;
+        font-size: 18px;
+        border: 1px solid $border-color;
     }
 }
