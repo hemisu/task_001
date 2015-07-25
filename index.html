@@ -21,7 +21,6 @@
 			<i id="menu-toggle" class="fa fa-bars header-left"></i>
 			<span>记账本</span>
 			<i class="fa fa-pencil header-right"></i>
-			<button type="button" class="btn-publish header-right" style="display: none;">发布</button>
 		</div>
 		<ul class="menu" style="display: none;">
 			<li class="on">账目列表</li>
@@ -33,7 +32,9 @@
         	时间：2015-07-20
         	描述：账单列表区域
         -->
-		<div id="bill-wrapper"></div>
+		<div id="bill-wrapper">
+			<ul class="bill"></ul>
+		</div>
 		<!--
         	作者：Frank
         	时间：2015-07-21
@@ -41,7 +42,7 @@
         -->
 		<div id="edit-wrapper" style="display: none;"></div>
 		<!--计算器-->
-		<div class="calc" >
+		<div class="calc" style="display: none;" >
 			<div class="input-area ">
 				<i class="fa fa-plane "></i>
 				<span>交通</span>
@@ -71,7 +72,7 @@
 						<td>C</td>
 						<td>0</td>
 						<td>.</td>
-						<td id="toggle-save">OK</td>
+						<td id="toggle-save" style="color: #e66b14;">OK</td>
 					</tr>
 				</tbody>
 			</table>
