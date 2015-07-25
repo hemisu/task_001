@@ -315,9 +315,15 @@ $(".keyboard").on("tap", function(e) {
 			$toggle.css("color","#e66b14");
 			result = "";
 		} else if ($target.text() === "OK") {
-			addItem();
-			wrapperToggle();
-			showBillList();
+			var amount = eval($amount.val());
+			if (amount && (amount * 100 === Math.floor(amount * 100))) {
+				addItem();
+				wrapperToggle();
+				showBillList();
+			}
+			else {
+				alert("您输入的金额好像不对 >_<");
+			}
 		} else if ($target.text() === "." && $amount.val().indexOf(".") < 0) {
 			$amount.val($amount.val() + $target.text());
 		} else if ($target.children("i").length > 0 && $target.children("i").hasClass("fa-long-arrow-left")) {

@@ -36,34 +36,41 @@ function wrapperToggle() {
 	$(".header .fa-pencil").toggle();
 }
 
+/**
+ * 显示项目金额输入键盘
+ */
+function showCalculator(icon, childCate, amount) {
+  var $input = $(".input-area");
+  $input.children("i").attr("class", icon);
+  $input.children("span").text(childCate);
+  $(".txt-amount").val(amount);
+  $(".calc").show();
+  $(".txt-amount").triggerHandler("focus");
+}
+
 Zepto(function($) {
 
-	//展开菜单
-	$("#menu-toggle").on("tap", function() {
-		var $menu = $(".menu");
-		if ($("#bill-wrapper").css("display") !== "none") {
-			$menu.slideToggle(300);
-			$(this).toggleClass("fa-bars");
-			$(this).toggleClass("fa-times");
-		}
-		//隐藏编辑页面
-		if ($("#edit-wrapper").css("display") !== "none") {
-			wrapperToggle();
-		}
-	});
-	//显示编辑页面
-	$(".fa-pencil").on("tap", wrapperToggle);
+  //展开菜单
+  $("#menu-toggle").on("tap", function() {
+    var $menu = $(".menu");
+    if ($("#bill-wrapper").css("display") !== "none") {
+      $menu.slideToggle(300);
+      $(this).toggleClass("fa-bars");
+      $(this).toggleClass("fa-times");
+    }
+    //隐藏编辑页面
+    if ($("#edit-wrapper").css("display") !== "none") {
+      wrapperToggle();
+    }
+  });
+  //显示编辑页面
+  $(".fa-pencil").on("tap", wrapperToggle);
 
-	//显示项目金额输入区域
-	$("#edit-wrapper .row").on("tap", function(e) {
-		var parent = $(e.target).parent();
-		if (parent[0].tagName.toLowerCase() === "li") {
-			var $input = $(".input-area");
-			$input.children("i").attr("class", parent.children("i").attr("class"));
-			$input.children("span").text(parent.children("span").text());
-			$(".txt-amount").val('');
-			$(".calc").show();
-			$(".txt-amount").triggerHandler("focus");
-		}
-	});
+  //显示项目金额输入区域
+  $("#edit-wrapper .row").on("tap", function(e) {
+    var parent = $(e.target).parent();
+    if (parent[0].tagName.toLowerCase() === "li") {
+      showCalculator(parent.children("i").attr("class"), parent.children("span").text(), '');
+    }
+  });
 })
