@@ -155,7 +155,7 @@ function showBillList() {
 			var child = getChildCateByID(billList[i].childCateID);
 			var fontColor = child.pid === 0 ? "income" : "payment";
 			html += '' 
-			+ '<li>' 
+			+ '<li id=' + billList[i].id + '>' 
 			+ 	'<div class="item">' 
 			+ 		'<i class="' + child.className + '"></i>' 
 			+ 		'<span class="cate">' + child.name + '</span>' 
@@ -167,8 +167,70 @@ function showBillList() {
 		}
 		
 	}
+
 	$("#bill-wrapper .bill").html(html);
+
+	addEditPanelToBillItems();
 }
+
+var _editPanelWidth; // protected variable indicating the width of editPanel of bill item
+/**
+ * 添加收支条目编辑界面(修改金额/删除)
+ */
+function addEditPanelToBillItems() {
+	function getEditPanelWidth(el) {
+		var income, payment;
+
+		income = $(el).find(".income");
+		if (income.length === 0) {
+			payment = $(el).find(".payment");
+		}
+
+		return (payment || income).position().left;
+	};
+
+	var editPanelHtml = "<i class=\"fa fa-pencil modify\"></i><i class=\"fa fa-trash-o delete\"></i>";
+	$(".bill .edit").each(function() {
+		$(this).html(editPanelHtml);
+		_editPanelWidth = _editPanelWidth || getEditPanelWidth($(this).prev()[0]);
+		$(this).css("width", _editPanelWidth);
+	});
+
+	//编辑事件
+	$(".edit .delete").on("tap click", function() {
+		deleteItem(parseInt($(this).parent().parent().attr('id'), 10));
+		showBillList();
+	});
+
+	$(".edit .modify").on("tap click", function() {
+
+	});
+
+	//滑动
+	var startX, currX;
+	$(".bill .item").on("touchmove", function(e) {
+		e.preventDefault();
+		currX = e.changedTouches[0].pageX;
+		if (currX < startX) {
+			$(this).addClass("displayEdit")
+				// towards left
+			$(this).animate({
+				"margin-left": -getEditPanelWidth(this)
+			}, "slow");
+		} else {
+			$(this).removeClass("displayEdit");
+			//towards right
+			$(this).animate({
+				"margin-left": 0
+			}, "slow");
+		}
+	});
+	$(".bill .item").on("touchstart", function(e) {
+		e.preventDefault();
+		startX = e.changedTouches[0].pageX;
+	});
+}
+
 /**
  * 添加新的账单项目 
  */
@@ -182,6 +244,38 @@ function addItem(){
 	billList.push(newItem);
 	save();
 	alert("添加成功");
+}
+
+/**
+ * 软删除一个收支条目
+ */
+function deleteItem(id){
+	if (id < 0 || id >= billList.length) {
+		return;
+	}
+
+	var item = billList[id]
+	if (item && !item.isDeleted) {
+		item.isDeleted = true;
+		save();
+		alert("删除成功");
+	}
+}
+
+/**
+ * 修改一个收支条目的金额
+ */
+function editItem(id, money){
+	if (id < 0 || id >= billList.length) {
+		alert("要删除的收支不存在");
+	}
+
+	var item = billList[id];
+	if (item) {
+		item.money = money;
+		save();
+		alert("修改成功");
+	}
 }
 /**
  * 计算器键盘点击事件处理

@@ -35,6 +35,7 @@ function wrapperToggle() {
 	}
 	$(".header .fa-pencil").toggle();
 }
+
 Zepto(function($) {
 
 	//展开菜单
@@ -53,46 +54,6 @@ Zepto(function($) {
 	//显示编辑页面
 	$(".fa-pencil").on("tap", wrapperToggle);
 
-	function getEditPanelWidth(el) {
-		var income, payment;
-
-		income = $(el).find(".income");
-		if (income.length === 0) {
-			payment = $(el).find(".payment");
-		}
-
-		return (payment || income).position().left;
-	};
-
-	var editPanelHtml = "<i class=\"fa fa-pencil\"></i><i class=\"fa fa-trash-o\"></i>";
-	$(".bill .edit").each(function() {
-		$(this).html(editPanelHtml);
-		$(this).css("width", getEditPanelWidth($(this).prev()[0]));
-	});
-
-	//滑动
-	var startX, currX;
-	$(".bill .item").on("touchmove", function(e) {
-		e.preventDefault();
-		currX = e.changedTouches[0].pageX;
-		if (currX < startX) {
-			$(this).addClass("displayEdit")
-				// towards left
-			$(this).animate({
-				"margin-left": -getEditPanelWidth(this)
-			}, "slow");
-		} else {
-			$(this).removeClass("displayEdit");
-			//towards right
-			$(this).animate({
-				"margin-left": 0
-			}, "slow");
-		}
-	});
-	$(".bill .item").on("touchstart", function(e) {
-		e.preventDefault();
-		startX = e.changedTouches[0].pageX;
-	});
 	//显示项目金额输入区域
 	$("#edit-wrapper .row").on("tap", function(e) {
 		var parent = $(e.target).parent();
