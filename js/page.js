@@ -39,11 +39,12 @@ function wrapperToggle() {
 /**
  * 显示项目金额输入键盘
  */
-function showCalculator(icon, childCate, amount) {
+function showCalculator(icon, childCate, amount, id) {
   var $input = $(".input-area");
   $input.children("i").attr("class", icon);
   $input.children("span").text(childCate);
-  $(".txt-amount").val(amount);
+  $(".txt-amount").val(amount || '');
+  $(".calc").attr('id', 'calc-item-' + (id || ""));;
   $(".calc").show();
   $(".txt-amount").triggerHandler("focus");
 }
@@ -64,7 +65,7 @@ Zepto(function($) {
     }
   });
   //显示编辑页面
-  $(".fa-pencil").on("tap", wrapperToggle);
+  $("#enterEditPage").on("tap", wrapperToggle);
 
   //显示项目金额输入区域
   $("#edit-wrapper .row").on("tap", function(e) {

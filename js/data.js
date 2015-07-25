@@ -203,7 +203,13 @@ function addEditPanelToBillItems() {
 	});
 
 	$(".edit .modify").on("tap click", function() {
+		var $item = $(this).parent().prev(), amount;
+		if ($item.length > 0) {
+			amount = ($item.children(".payment").length > 0) ? 
+						$item.children(".payment").text() : $item.children(".income").text();
 
+			showCalculator($item.children("i").attr("class"), $item.children(".cate").text(), amount, $item.parent().attr('id'));
+		}
 	});
 
 	//滑动
@@ -251,7 +257,7 @@ function addItem(){
  */
 function deleteItem(id){
 	if (id < 0 || id >= billList.length) {
-		return;
+		return false;
 	}
 
 	var item = billList[id]
@@ -259,7 +265,10 @@ function deleteItem(id){
 		item.isDeleted = true;
 		save();
 		alert("删除成功");
+		return true;
 	}
+
+	return false;
 }
 
 /**
@@ -267,15 +276,18 @@ function deleteItem(id){
  */
 function editItem(id, money){
 	if (id < 0 || id >= billList.length) {
-		alert("要删除的收支不存在");
+		return false;
 	}
 
 	var item = billList[id];
-	if (item) {
+	if (item && item.money !== money) {
 		item.money = money;
 		save();
 		alert("修改成功");
+		return true;
 	}
+
+	return false;
 }
 /**
  * 计算器键盘点击事件处理
@@ -315,11 +327,26 @@ $(".keyboard").on("tap", function(e) {
 			$toggle.css("color","#e66b14");
 			result = "";
 		} else if ($target.text() === "OK") {
-			var amount = eval($amount.val());
+			var amount = eval($amount.val()), $item;
 			if (amount && (amount * 100 === Math.floor(amount * 100))) {
-				addItem();
-				wrapperToggle();
-				showBillList();
+				if ($("#edit-wrapper").css("display") !== "none") {
+					addItem();
+					wrapperToggle();
+					showBillList();
+				}
+				else {
+					var itemId = ($(this).parent().attr("id") || '').split('-')[2] || 0;
+					if (editItem(itemId, amount)) {
+						$(".calc").hide();
+						$item = $("#" + itemId).children(".item");
+						if ($item.children(".payment").length > 0) {
+							$item.children(".payment").text(amount);
+						}
+						else {
+							$item.children(".income").text(amount);
+						}
+					}
+				}
 			}
 			else {
 				alert("您输入的金额好像不对 >_<");
