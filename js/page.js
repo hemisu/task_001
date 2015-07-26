@@ -26,13 +26,13 @@ function wrapperToggle() {
 			"color": "#fff"
 		});
 		$(".header span").text("记账本");
-		$(".calc").hide();
 		setTimeout(function() {
 			$("#bill-wrapper").show();
 		}, time);
 		$("#menu-toggle").toggleClass("fa-bars");
 		$("#menu-toggle").toggleClass("fa-times");
 	}
+	$(".calc").hide();
 	$(".header .fa-pencil").toggle();
 }
 
@@ -47,6 +47,18 @@ function showCalculator(icon, childCate, amount, id) {
   $(".calc").attr('id', 'calc-item-' + (id || ""));;
   $(".calc").show();
   $(".txt-amount").triggerHandler("focus");
+  $("#menu-toggle").hide();
+  $(".header-right").hide();
+  $("#cancel").show();
+  //取消输入
+  $("#cancel").tap(function(){
+  	$(".calc").hide();
+  	$(this).hide();
+  	$("#menu-toggle").show();
+  	if($("#bill-wrapper").css("display")!=="none"){
+  		$(".header-right").show();
+  	}
+  });
 }
 
 Zepto(function($) {

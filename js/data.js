@@ -59,6 +59,7 @@ var childCate = [{
  * childID:子分类ID
  * money:金额
  * date:账单建立日期
+ * isDeleted:标识是否已经删除
  */
 var billList = [{
 	id: 0,
@@ -126,6 +127,18 @@ function getChildCateByName(name) {
 				return childCate[i];
 			}
 		}
+}
+/**
+ * 根据id获取账单项目
+ * @param {int} id
+ * @return {Object} item
+ */
+function getItemByID(id){
+	for(var i=0;i<billList.length;i++){
+		if(billList[i].id===id){
+			return billList[i];
+		}
+	}
 }
 /**
  * 显示子分类图标
@@ -259,8 +272,7 @@ function deleteItem(id){
 	if (id < 0 || id >= billList.length) {
 		return false;
 	}
-
-	var item = billList[id]
+	var item = getItemByID(id);
 	if (item && !item.isDeleted) {
 		item.isDeleted = true;
 		save();
@@ -291,13 +303,11 @@ function editItem(id, money){
 }
 /**
  * 计算器键盘点击事件处理
- *
- * PS:可能有未知的坑
  */
 var result = "";
 $(".keyboard").on("tap", function(e) {
-	if (e.target.tagName.toLowerCase() === "td") {
-		var $target = $(e.target);
+	var $target = $(e.target);
+	if ($target[0].tagName.toLowerCase() === "td"||$target.parent("td").length>0) {
 		var $amount = $(".txt-amount");
 		var $toggle = $("#toggle-save");
 		if (RegExp("[0-9]").test($target.text())) {
@@ -345,6 +355,7 @@ $(".keyboard").on("tap", function(e) {
 						else {
 							$item.children(".income").text(amount);
 						}
+						$item.css("marginLeft","0");
 					}
 				}
 			}
@@ -353,7 +364,7 @@ $(".keyboard").on("tap", function(e) {
 			}
 		} else if ($target.text() === "." && $amount.val().indexOf(".") < 0) {
 			$amount.val($amount.val() + $target.text());
-		} else if ($target.children("i").length > 0 && $target.children("i").hasClass("fa-long-arrow-left")) {
+		} else if (($target.children("i").length > 0 && $target.children("i").hasClass("fa-long-arrow-left"))||$target.hasClass("fa-long-arrow-left")) {
 			$amount.val($amount.val().substr(0, $amount.val().length - 1));
 		}
 	}
